@@ -1307,17 +1307,13 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
     $(PDK_FUSION_SYSIMG_FILES) \
     $(RECOVERY_RESOURCE_ZIP))
 
+systemimage-changelog: $(INTERNAL_SYSTEMIMAGE_FILES)
+	@echo "Making the changelog!"
+	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/reapertools/changelog.sh
 
-FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS)
+.PHONY: systemimage-changelog
 
-# ASAN libraries in the system image - add dependency.
-ASAN_IN_SYSTEM_INSTALLED := $(TARGET_OUT)/asan.tar.bz2
-ifneq (,$(SANITIZE_TARGET))
-  ifeq (true,$(SANITIZE_TARGET_SYSTEM))
-    FULL_SYSTEMIMAGE_DEPS += $(ASAN_IN_SYSTEM_INSTALLED)
-  endif
-endif
-
+FULL_SYSTEMIMAGE_DEPS := $(INTERNAL_SYSTEMIMAGE_FILES) $(INTERNAL_USERIMAGES_DEPS) systemimage-changelog
 # -----------------------------------------------------------------
 # installed file list
 # Depending on anything that $(BUILT_SYSTEMIMAGE) depends on.
