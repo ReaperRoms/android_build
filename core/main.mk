@@ -9,11 +9,63 @@ else
 SHELL := /bin/bash
 endif
 
-ifndef KATI
+# this turns off the suffix rules built into make
+.SUFFIXES:
 
-host_prebuilts := linux-x86
-ifeq ($(shell uname),Darwin)
-host_prebuilts := darwin-x86
+# this turns off the RCS / SCCS implicit rules of GNU Make
+% : RCS/%,v
+% : RCS/%
+% : %,v
+% : s.%
+% : SCCS/s.%
+
+# If a rule fails, delete $@.
+.DELETE_ON_ERROR:
+
+# Figure out where we are.
+#TOP := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+#TOP := $(patsubst %/,%,$(TOP))
+
+# TOPDIR is the normal variable you should use, because
+# if we are executing relative to the current directory
+# it can be "", whereas TOP must be "." which causes
+# pattern matching problems when make strips off the
+# trailing "./" from paths in various places.
+#ifeq ($(TOP),.)
+#TOPDIR :=
+#else
+#TOPDIR := $(TOP)/
+#endif
+
+# Check for unofficial builds.
+# (You wanna play? We play.)
+ifeq ($(FUCK_XDA), true)
+$(warning ***********************************************************)
+$(warning *  ACCESS GRANTED)
+$(warning ***********************************************************)
+else
+$(warning ******************************************************)
+$(warning ******************************************************)
+$(warning *  Nice try slick.)
+$(warning *  BrokenOS can only be built by OFFICIAL team members.)
+$(warning *        __ __  ______           __  _  __ ____  ___ )
+$(warning *     __/ // /_/ ____/_  _______/ /_| |/ // __ \/   |)
+$(warning *    /_  _  __/ /_  / / / / ___/ //_/   // / / / /| |)
+$(warning *   /_  _  __/ __/ / /_/ / /__/ ,< /   |/ /_/ / ___ |)
+$(warning *    /_//_/ /_/    \__,_/\___/_/|_/_/|_/_____/_/  |_|)
+$(warning ******************************************************)
+$(warning ******************************************************)
+$(error You did this to yourselves)
+endif
+
+# Check for broken versions of make.
+ifneq (1,$(strip $(shell expr $(MAKE_VERSION) \>= 3.81)))
+$(warning ********************************************************************************)
+$(warning *  You are using version $(MAKE_VERSION) of make.)
+$(warning *  Android can only be built by versions 3.81 and higher.)
+$(warning *  see https://source.android.com/source/download.html)
+$(warning ********************************************************************************)
+$(error stopping)
 endif
 
 .PHONY: run_soong_ui
