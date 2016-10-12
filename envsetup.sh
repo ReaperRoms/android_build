@@ -547,13 +547,23 @@ function print_lunch_menu()
 {
     local uname=$(uname)
     echo
-    echo "You're building on" $uname
-    echo
-    if [ "z${REAPER_DEVICES_ONLY}" != "z" ]; then
-       echo "Breakfast menu... pick a combo:"
-    else
-       echo "Lunch menu... pick a combo:"
-    fi
+    echo ""
+    tput setaf 1;
+    tput bold;
+    echo " _____________________   _____ _________________________________________ ________      _____    _________ "
+    echo " \______   \_   _____/  /  _  \\______   \_   _____/\______   \______   \\_____  \    /     \  /   _____/ "
+    echo "  |       _/|    __)_  /  /_\  \|     ___/|    __)_  |       _/|       _/ /   |   \  /  \ /  \ \_____  \  "
+    echo "  |    |   \|        \/    |    \    |    |        \ |    |   \|    |   \/    |    \/    Y    \/        \ "
+    echo "  |____|_  /_______  /\____|__  /____|   /_______  / |____|_  /|____|_  /\_______  /\____|__  /_______  / "
+    echo "         \/        \/         \/                 \/         \/        \/         \/         \/        \/  "
+    tput sgr0;
+    echo ""
+    echo "                                         Welcome to Reaper                      "
+    echo ""
+    tput bold;
+    echo "                                        Pick your own death                     "
+    tput sgr0;
+    echo ""
 
     local i=1
     local choice
