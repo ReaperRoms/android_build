@@ -179,9 +179,9 @@ include $(BUILD_SYSTEM)/node_fns.mk
 include $(BUILD_SYSTEM)/product.mk
 include $(BUILD_SYSTEM)/device.mk
 
-# A SLIM build needs only the SLIM product makefiles.
-ifneq ($(SLIM_BUILD),)
-  all_product_configs := $(shell find device -path "*/$(SLIM_BUILD)/slim.mk")
+# A Reaper build needs only the Reaper product makefiles.
+ifneq ($(REAPER_BUILD),)
+  all_product_configs := $(shell find device -path "*/$(REAPER_BUILD)/reaper.mk")
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
@@ -192,9 +192,9 @@ else
     # files in the tree.
     all_product_configs := $(get-all-product-makefiles)
   endif # TARGET_BUILD_APPS
-endif # SLIM_BUILD
+endif # REAPER_BUILD
 
-ifeq ($(SLIM_BUILD),)
+ifeq ($(REAPER_BUILD),)
 # Find the product config makefile for the current product.
 # all_product_configs consists items like:
 # <product_name>:<path_to_the_product_makefile>
