@@ -2230,11 +2230,12 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 
 REAPER_TARGET_PACKAGE := $(PRODUCT_OUT)/$(REAPER_MOD_VERSION).zip
 
-.PHONY: otapackage bacon
+.PHONY: otapackage bacon death
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(REAPER_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(REAPER_TARGET_PACKAGE) > $(REAPER_TARGET_PACKAGE).md5sum
+death: bacon
 	@echo -e ${CL_RED}" "${CL_RED}
 	@echo -e ${CL_RED}"     ____     ______    ___     ____     ______    ____     ____    ____     __  ___   _____"${CL_RED}
 	@echo -e ${CL_RED}"    / __ \   / ____/   /   |   / __ \   / ____/   / __ \   / __ \  / __ \   /  |/  /  / ___/"${CL_RED}
