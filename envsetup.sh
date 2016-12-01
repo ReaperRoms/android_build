@@ -565,7 +565,7 @@ function print_lunch_menu()
     echo "                             Welcome to Reaper                    "
     echo ""
     tput bold;
-    echo "                  Joe probably fucked up all the devices!         "
+    echo "                             Pick Your Poison!                    "
     tput sgr0;
     echo ""
 
