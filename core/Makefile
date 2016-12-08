@@ -3,7 +3,7 @@
 # Build system colors
 
 ifneq ($(BUILD_WITH_COLORS),0)
-  CL_SGRY="\033[38;5;239m"
+  CL_GRY="\033[38;5;239m"
   CL_RED="\033[31m"
   CL_RST="\033[0m"
 endif
@@ -2230,19 +2230,43 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 
 REAPER_TARGET_PACKAGE := $(PRODUCT_OUT)/$(REAPER_MOD_VERSION).zip
 
-.PHONY: otapackage bacon death
+.PHONY: otapackage death
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
-bacon: otapackage
+death: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(REAPER_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(REAPER_TARGET_PACKAGE) > $(REAPER_TARGET_PACKAGE).md5sum
-death: bacon
 	@echo -e ${CL_RED}" "${CL_RED}
-	@echo -e ${CL_RED}"     ____     ______    ___     ____     ______    ____     ____    ____     __  ___   _____"${CL_RED}
-	@echo -e ${CL_RED}"    / __ \   / ____/   /   |   / __ \   / ____/   / __ \   / __ \  / __ \   /  |/  /  / ___/"${CL_RED}
-	@echo -e ${CL_RED}"   / /_/ /  / __/     / /| |  / /_/ /  / __/     / /_/ /  / /_/ / / / / /  / /|_/ /   \__ \ "${CL_RED}
-	@echo -e ${CL_RED}"  / _, _/  / /___    / ___ | / ____/  / /___    / _, _/  / _, _/ / /_/ /  / /  / /   ___/ / "${CL_RED}
-	@echo -e ${CL_RED}" /_/ |_|  /_____/   /_/  |_|/_/      /_____/   /_/ |_|  /_/ |_|  \____/  /_/  /_/   /____/  "${CL_RED}
-	@echo -e ${CL_RED}"                                                                                            "${CL_RED}
+	@echo -e ${CL_RED}"      ___                       ___  ____  __  ___   "${CL_RED}
+	@echo -e ${CL_RED}"     / _ \___ ___ ____ ___ ____/ _ \/ __ \/  |/  /   "${CL_RED}
+	@echo -e ${CL_RED}"    / , _/ -_/ _  / _ / -_/ __/ , _/ /_/ / /|_/ /    "${CL_RED}
+	@echo -e ${CL_RED}"   /_/|_|\__/\_._/ ._/\__/_/ /_/|_|\____/_/  /_/     "${CL_RED}
+	@echo -e ${CL_RED}"                /_/                                  "${CL_RED}
+	@echo -e ${CL_GRY}" dxxxkkxxxddddddddxxxxxxl::dkOkkkkkkk00OkkkOOOkkdlc: "${CL_GRY}
+	@echo -e ${CL_GRY}" ddxxkkOOOOkkkxkkkkkkkxl . .oxOOOOOkkxk0OOOOOOkxdllc "${CL_GRY}
+	@echo -e ${CL_GRY}" ddxxkO0KKK0000OOkkOy: :ldo:.ckOOOko...:kO00OOkxdoll "${CL_GRY}
+	@echo -e ${CL_GRY}" ddxxk0KXXXXKKKOo.: . .x0KKOkl:x0o:..   .x0OOOkxdooo "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxxkO0XXXNNKx.. .:coxO0XXKKKxcc. .     lOOkkkxxddo "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxxkkO0KKXO: .cx0KXXXXXXKKKK0l.        .xOkOkxxddo "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxxkkkkOxc .o0XNXXXXXXXXK0Od:..         :O0Okxxxdd "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxkkxkko..oOKKXXXXXXXXKKk:..    .       .x0Okkkxxd "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxkOOkc:oO0K0KKXXXXXXKKk.        ....    .xOkxxxdd "${CL_GRY}
+	@echo -e ${CL_GRY}" xxxkkxclOKKKKKXXXXXXXXKd.         .::.     .dkkxxdd "${CL_GRY}
+	@echo -e ${CL_GRY}" ddxxdcdO00KKKXXXXXXXXx:.          ....      :kkxddd "${CL_GRY}
+	@echo -e ${CL_GRY}" oooolxO00KKKXXXNNNNNx.               ..     :kkxddd "${CL_GRY}
+	@echo -e ${CL_GRY}" lllloxkOO0KKXXNNNNWWk.                 ... .:xkxddd "${CL_GRY}
+	@echo -e ${CL_GRY}" ::ccloodxkOO0KXNNNNNXx..ll.           .:c:...oOxddd "${CL_GRY}
+	@echo -e ${CL_GRY}" .:::CcllddxkO0KXKKKXKKKKXKl...         .... .lkxxdd "${CL_GRY}
+	@echo -e ${CL_GRY}" ...:::cloddxxkOOOOOOKKKKK0dc:.            ...cdolll "${CL_GRY}
+	@echo -e ${CL_GRY}" ......::cloddxxkxkkkkO0OOOkdc.              .:cc::: "${CL_GRY}
+	@echo -e ${CL_GRY}" .........:::clodxkOOkkxkxxxd:.              ...:::: "${CL_GRY}
+	@echo -e ${CL_GRY}" .............::loxkkxolc:::c.              ......:: "${CL_GRY}
+	@echo -e ${CL_GRY}" ..............::::::::.......             ........: "${CL_GRY}
+	@echo -e ${CL_GRY}" ............................             .......... "${CL_GRY}
+	@echo -e ${CL_GRY}"    .   .....................             .......... "${CL_GRY}
+	@echo -e ${CL_GRY}"    .   ....................              .......... "${CL_GRY}
+	@echo -e ${CL_GRY}" ....    .... ..............               ......... "${CL_GRY}
+	@echo -e ${CL_GRY}" ......   ... .......                      ......... "${CL_GRY}
+	@echo -e ${CL_RST}" "${CL_RST}
 	@echo -e ${CL_CYN}"Package Complete: $(REAPER_TARGET_PACKAGE)"${CL_RST}
 
 endif    # build_ota_package
