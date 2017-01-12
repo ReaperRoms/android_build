@@ -1249,7 +1249,7 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
 
 systemimage-changelog: $(INTERNAL_SYSTEMIMAGE_FILES)
 	@echo "Making the changelog!"
-	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/reapertools/changelog.sh
+	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/reaper/tools/changelog.sh
 
 .PHONY: systemimage-changelog
 
