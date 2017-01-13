@@ -64,10 +64,11 @@ if [ "$TARGET_UNIFIED_DEVICE" == "" ] ; then
   fi
 fi
 if [ -n "$DEVICE_MAINTAINERS" ] ; then
-  echo "ro.broken.maintainer=$DEVICE_MAINTAINERS"
+  echo "ro.reaper.maintainer=$DEVICE_MAINTAINERS"
 fi
 echo "ro.build.characteristics=$TARGET_AAPT_CHARACTERISTICS"
 
 echo "ro.reaper.device=$REAPER_DEVICE"
+echo "ro.reaper.model=$PRODUCT_MODEL"
 
 echo "# end build properties"
